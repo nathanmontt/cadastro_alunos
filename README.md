@@ -9,11 +9,11 @@ Uma escola fictícia disponibilizou uma lista de alunos. Você precisa ler o CSV
 
 ## Objetivo
 
-Construir, **por conta própria**, um programa de linha de comando que transforme os arquivos brutos em informações úteis, com critérios explícitos de tratamento de dados.
+Construir um programa de linha de comando que transforme os arquivos brutos em informações úteis, com critérios explícitos de tratamento de dados.
 
 ## Ferramentas previstas
 
-- Linguagem: Python 3
+- Linguagem: Python
 - Editor: VS Code
 
 ## Arquivos de entrada
@@ -22,9 +22,7 @@ Veja os arquivos na pasta `dados/brutos/`. Leia-os como **texto CSV separado por
 
 ## Requisitos do projeto
 
-- [ ] Abrir o arquivo CSV e reconhecer o cabeçalho.
-- [ ] Inspecionar pelo menos cinco registros e verificar seus tipos.
-- [ ] Identificar campos vazios ou valores que não parecem notas válidas.
+- [x] Identificar campos vazios ou valores que não parecem notas válidas.
 - [ ] Definir uma regra para calcular uma média quando faltam notas, sem inventar números.
 - [ ] Separar registros que podem ser calculados dos que precisam de revisão.
 - [ ] Exibir um resumo legível no terminal e registrar observações no diário.
