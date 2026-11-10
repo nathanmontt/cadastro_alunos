@@ -15,12 +15,17 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
         matricula = each_line["matricula"]
         nome = each_line["nome"].strip().title()
         turma = each_line["turma"]
+
+        # verificação de idades escritas
         
-        idade = each_line["idade"]
-        if idade:
-            idade = int(idade)
-        else:
-            idade = None
+        idade_text = each_line["idade"].strip()
+        idade_extenso = {
+            "dezesseis": 16,
+        }
+        if idade_text.isdigit():
+            idade = int(idade_text)
+        elif idade_text.lower() in idade_extenso:
+            idade = idade_extenso[idade_text.lower()]
 
         # idade = each_line["idade"]
         nota1 = each_line["nota1"]
@@ -42,7 +47,7 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
         elif turma == 'C':
             count_C += 1
 
-        print(matricula, nome, turma, idade)
+        print(f"{matricula} {nome} {turma} {idade_extenso}")
 
     print(count_A)
     print(count_B)
