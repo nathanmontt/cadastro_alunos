@@ -15,7 +15,7 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
         # verifcação de nomes
         nome_old = each_line["nome"].strip().title()
         if not nome_old:
-            nome = "Sem registro"
+            nome = "Sem registro".upper()
         else:
             nome = nome_old
 
@@ -34,19 +34,15 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
         elif idade_texto.casefold() in idade_extenso:
             idade = idade_extenso[idade_texto]
         else:
-            idade = "Sem idade"
+            idade = "Sem idade".upper()
 
         # ---------------------------------------
         # verificação de nota
         nota1_texto = each_line["nota1"].strip().casefold()
         nota2_texto = each_line["nota2"].strip().casefold()
-        if nota1_texto == "ausente" or nota2_texto == "ausente":
-            nota1_texto = 0
-            nota2_texto = 0
-
-        if not nota1_texto or not nota2_texto:
-            nota1 = None
-            nota2 = None
+        if nota1_texto == "ausente" or nota2_texto == "ausente" or not nota1_texto or not nota2_texto:
+            nota1 = float(0)
+            nota2 = float(0)
         else:
             nota1 = float(nota1_texto.replace(',','.'))
             nota2 = float(nota2_texto.replace(',','.'))
@@ -67,6 +63,7 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
 
         # print dos valores
         print(f"{matricula} | {nome} | {turma} | {idade} | {nota1} | {nota2}")
+        print("-" * 48)
 
     print(count_A)
     print(count_B)
