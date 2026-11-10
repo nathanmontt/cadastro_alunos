@@ -1,5 +1,5 @@
 ﻿matricula;nome;turma;idade;nota1;nota2;frequencia_pct
-A0001;Ana Lima;B;18;7,8;6,4;67
+A0001;Ana Lima;B;18;7,8;ausente;67
 A0002;Bruno Moura;C;;8,3;5,5;78
 A0003;Carla Nunes;A;14;9,9;5,5;74
 A0004;Daniel Souza;B;;;5,3;76
@@ -7,7 +7,7 @@ A0005;Elisa Rocha;C;16;4,6;5,0;83
 A0006;Felipe Costa;A;15;6,3;7,6;66
 A0007;  GIOVANA ALVES  ;B;14;8,9;6,8;98
 A0008;Henrique Dias;C;15;5,0;9,8;92
-A0009;Isabela Torres;A;18;3,8;;73
+A0009;;A;18;3,8;;73
 A0010;Joao Pedro;B;15;6,9;9,8;91
 A0011;Karen martins;C;18;6,9;10,0;94
 A0012;Lucas Oliveira;A;18;6,3;4,4;95
