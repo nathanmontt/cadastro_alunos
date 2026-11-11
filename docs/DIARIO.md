@@ -32,6 +32,9 @@
 
 <!-- _Preencher depois de terminar os cálculos._ -->
 
-<!-- ## Melhorias futuras
+## Melhorias futuras
 
-_Preencher com ideias, como separar funções, exportar, testar etc._ -->
+| Melhorias | O que é/são |
+|---|---|
+| Exportação | Criar um menu que exporte o arquivo limpo e formatado |
+| Funções | Criar funções para separar melhor o programa |

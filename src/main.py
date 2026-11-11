@@ -50,7 +50,12 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
 
         # ---------------------------------------
         # verificação de frequencia
-        frequencia_pct = each_line["frequencia_pct"]
+        frequencia_pct_texto = each_line["frequencia_pct"].strip()
+        if not frequencia_pct_texto:
+            frequencia_pct = float(0)
+        else:
+            frequencia_pct = float(frequencia_pct_texto.replace(',','.'))
+
 
         # ---------------------------------------
         # verificação de turma predominante
@@ -62,7 +67,7 @@ with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
             count_C += 1
 
         # print dos valores
-        print(f"{matricula} | {nome} | {turma} | {idade} | {nota1} | {nota2}")
+        print(f"{matricula} | {nome} | {turma} | {idade} | {nota1} | {nota2} | {frequencia_pct:.2f}%")
         print("-" * 48)
 
     print(count_A)
