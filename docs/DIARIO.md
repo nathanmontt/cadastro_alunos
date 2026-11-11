@@ -12,12 +12,6 @@
 - Qual(is) aluno(s) possui(em) maior nota na prova 1?
 - Qual(is) aluno(s) possui(em) maior nota na prova 2?
 
-## O que identifiquei ao abrir o CSV?
-
-- Cabeçalho: informações ok, sem erros de formatação
-- Delimitador: como é um arquivo `.csv`, o delimitador (`;`) estava correto
-- Colunas numéricas: alguns valores estavam faltantes
-- Colunas textuais: nomes com alguns erros de formatação básicos, ou faltantes
 <!-- - Dúvidas e suspeitas: nenhuma -->
 
 <!-- ## Regras que adotei
@@ -26,7 +20,7 @@
 |---|---|---|
 | Exemplo: campo vazio | _preencher_ | _preencher_ | -->
 
-## Erros encontrados no Python e como investiguei
+## O que foi identificado ao abrir o CSV, como investiguei e o que aprendi, além de contornar
 
 | Sintoma / mensagem | O que tentei | O que aprendi |
 |---|---|---|
