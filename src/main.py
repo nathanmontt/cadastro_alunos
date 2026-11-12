@@ -3,6 +3,29 @@ import csv
 
 caminho_csv = Path(__file__).parent.parent / "dados" / "brutos" / "alunos.csv"
 
+
+def converter_float(valor_texto: str) -> float:
+    valor_texto = valor_texto.strip().casefold()
+    if not valor_texto or valor_texto == "ausente":
+        return 0.0
+
+    return float(valor_texto.replace(',','.'))
+
+def preparar_nome(nome_texto: str) -> str:
+    nome = nome_texto.strip().title()
+
+def imprimir_cabecalho() -> None:
+    print(
+        f"{'MATRÍCULA':<12}"
+        f"{'NOME':<25}"
+        f"{'TURMA':<8}"
+        f"{'IDADE':<12}"
+        f"{'NOTA 1':>10}"
+        f"{'NOTA 2':>10}"
+        f"{'FREQUÊNCIA':>14}"
+    )
+    print("-" * 91)
+
 with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
     leitor = csv.DictReader(arq, delimiter=";")
     count_A = 0
