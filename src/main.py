@@ -26,50 +26,37 @@ def imprimir_cabecalho() -> None:
     )
     print("-" * 91)
 
+def converter_idade(idade_texto: str):
+    idade = idade_texto.strip().casefold()
+
+    idades_por_extenso = {
+        "dezesseis": 16,
+    }
+
+    if idade.isdigit():
+        return int(idade)
+
+    if idade in idades_por_extenso:
+        return idades_por_extenso[idade]
+
+    return "SEM IDADE"
+
 with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
     leitor = csv.DictReader(arq, delimiter=";")
     count_A = 0
     count_B = 0
     count_C = 0
 
+    imprimir_cabecalho()
+
     for each_line in leitor:
         matricula = each_line["matricula"]
-
-        # verifcação de nomes
-        nome_old = each_line["nome"].strip().title()
-        if not nome_old:
-            nome = "Sem registro".upper()
-        else:
-            nome = nome_old
-
-        # ---------------------------------------
-
+        nome = preparar_nome(each_line["nome"])
         turma = each_line["turma"]
+        idade = converter_idade(each_line["idade"])
 
-        # ---------------------------------------
-        # verificação de idades
-        idade_texto = each_line["idade"].strip()
-        idade_extenso = {
-            "dezesseis": 16,
-        }
-        if idade_texto.isdigit():
-            idade = int(idade_texto)
-        elif idade_texto.casefold() in idade_extenso:
-            idade = idade_extenso[idade_texto]
-        else:
-            idade = "Sem idade".upper()
-
-        # ---------------------------------------
-        # verificação de nota
-        nota1_texto = each_line["nota1"].strip().casefold()
-        nota2_texto = each_line["nota2"].strip().casefold()
-        if nota1_texto == "ausente" or nota2_texto == "ausente" or not nota1_texto or not nota2_texto:
-            nota1 = float(0)
-            nota2 = float(0)
-        else:
-            nota1 = float(nota1_texto.replace(',','.'))
-            nota2 = float(nota2_texto.replace(',','.'))
-
+        nota1 = converter_float(each_line["nota1"])
+        nota2 = converter_float(each_line["nota2"])
 
         # ---------------------------------------
         # verificação de frequencia
