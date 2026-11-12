@@ -4,13 +4,13 @@
 
 09/11/2026
 
-## O que eu quero descobrir?
+## Que perguntas quero responder?
 
-- Qual turma é a mais predominante?
-- Qual aluno com maior média?
-- Qual a média das idades dos alunos?
-- Qual(is) aluno(s) possui(em) maior nota na prova 1?
-- Qual(is) aluno(s) possui(em) maior nota na prova 2?
+[x] Qual turma é a mais predominante?
+[ ] Qual aluno com maior média?
+[ ] Qual a média das idades dos alunos?
+[ ] Qual(is) aluno(s) possui(em) maior nota na prova 1?
+[ ] Qual(is) aluno(s) possui(em) maior nota na prova 2?
 
 <!-- - Dúvidas e suspeitas: nenhuma -->
 
@@ -38,3 +38,4 @@
 |---|---|
 | Exportação | Criar um menu que exporte o arquivo limpo e formatado |
 | Funções | Criar funções para separar melhor o programa |
+| Estatísticas | Entendimento da biblioteca nativa `statistics` para terminar o projeto |
