@@ -4,15 +4,15 @@ import csv
 caminho_csv = Path(__file__).parent.parent / "dados" / "brutos" / "alunos.csv"
 
 
-def converter_float(valor_texto: str) -> float:
-    valor_texto = valor_texto.strip().casefold()
-    if not valor_texto or valor_texto == "ausente":
+def converter_float(valor: str) -> float:
+    valor = valor.strip().casefold()
+    if not valor or valor == "ausente":
         return 0.0
 
-    return float(valor_texto.replace(',','.'))
+    return float(valor.replace(",","."))
 
-def preparar_nome(nome_texto: str) -> str:
-    nome = nome_texto.strip().title()
+def preparar_nome(valor: str) -> str:
+    nome = valor.strip().title()
 
 def imprimir_cabecalho() -> None:
     print(
@@ -26,60 +26,56 @@ def imprimir_cabecalho() -> None:
     )
     print("-" * 91)
 
-def converter_idade(idade_texto: str):
-    idade = idade_texto.strip().casefold()
+def imprimir_aluno(matricula: str, nome: str, turma: str, idade, nota1: float, nota2: float, frequencia: float,) -> None:
+    print(
+        f"{matricula:<12}"
+        f"{nome}"
+        f"{turma:<8}"
+        f"{str(idade):<12}"
+        f"{nota1:>10.2f}"
+        f"{nota2:>10.2f}"
+        f"{frequencia:>13.2f}%"
+    )
+
+def converter_idade(valor: str):
+    valor = valor.strip().casefold()
 
     idades_por_extenso = {
         "dezesseis": 16,
     }
 
-    if idade.isdigit():
-        return int(idade)
+    if valor.isdigit():
+        return int(valor)
 
-    if idade in idades_por_extenso:
-        return idades_por_extenso[idade]
+    if valor in idades_por_extenso:
+        return idades_por_extenso[valor]
 
     return "SEM IDADE"
 
 with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
     leitor = csv.DictReader(arq, delimiter=";")
-    count_A = 0
-    count_B = 0
-    count_C = 0
+    quantidade_turmas = {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+    }
 
     imprimir_cabecalho()
 
     for each_line in leitor:
         matricula = each_line["matricula"]
         nome = preparar_nome(each_line["nome"])
-        turma = each_line["turma"]
+        turma = each_line["turma"].strip().upper()
         idade = converter_idade(each_line["idade"])
 
         nota1 = converter_float(each_line["nota1"])
         nota2 = converter_float(each_line["nota2"])
 
-        # ---------------------------------------
-        # verificação de frequencia
-        frequencia_pct_texto = each_line["frequencia_pct"].strip()
-        if not frequencia_pct_texto:
-            frequencia_pct = float(0)
-        else:
-            frequencia_pct = float(frequencia_pct_texto.replace(',','.'))
+        frequencia = converter_float(each_line["frequencia_pct"])
 
-
-        # ---------------------------------------
+        # ESTATÍSTICAS
         # verificação de turma predominante
-        if turma == 'A':
-            count_A += 1
-        elif turma == 'B':
-            count_B += 1
-        elif turma == 'C':
-            count_C += 1
+        if turma in quantidade_turmas:
+            quantidade_turmas[turma] += 1
 
-        # print dos valores
-        print(f"{matricula} | {nome} | {turma} | {idade} | {nota1} | {nota2} | {frequencia_pct:.2f}%")
-        print("-" * 48)
-
-    print(count_A)
-    print(count_B)
-    print(count_C)
+        imprimir_aluno(matricula, nome, turma, idade, nota1, nota2, frequencia)
