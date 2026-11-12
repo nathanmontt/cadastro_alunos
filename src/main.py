@@ -9,10 +9,34 @@ def converter_float(valor: str) -> float:
     if not valor or valor == "ausente":
         return 0.0
 
+    valor2 = float(valor.replace(",","."))
+    if valor2 < 0:
+        return 0.0
+
     return float(valor.replace(",","."))
 
 def preparar_nome(valor: str) -> str:
     nome = valor.strip().title()
+
+def converter_idade(valor: str):
+    valor = valor.strip().casefold()
+
+    idades_por_extenso = {
+        "dezesseis": 16,
+    }
+
+    if valor.isdigit():
+        return int(valor)
+
+    if valor in idades_por_extenso:
+        return idades_por_extenso[valor]
+
+    return "SEM IDADE"
+
+def preparar_nome(valor: str) -> str:
+    nome = valor.strip().title()
+
+    return nome or "SEM REGISTRO"
 
 def imprimir_cabecalho() -> None:
     print(
@@ -29,28 +53,13 @@ def imprimir_cabecalho() -> None:
 def imprimir_aluno(matricula: str, nome: str, turma: str, idade, nota1: float, nota2: float, frequencia: float,) -> None:
     print(
         f"{matricula:<12}"
-        f"{nome}"
+        f"{nome:<25}"
         f"{turma:<8}"
         f"{str(idade):<12}"
         f"{nota1:>10.2f}"
         f"{nota2:>10.2f}"
         f"{frequencia:>13.2f}%"
     )
-
-def converter_idade(valor: str):
-    valor = valor.strip().casefold()
-
-    idades_por_extenso = {
-        "dezesseis": 16,
-    }
-
-    if valor.isdigit():
-        return int(valor)
-
-    if valor in idades_por_extenso:
-        return idades_por_extenso[valor]
-
-    return "SEM IDADE"
 
 with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
     leitor = csv.DictReader(arq, delimiter=";")
