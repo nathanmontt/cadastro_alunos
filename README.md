@@ -23,9 +23,9 @@ Veja os arquivos na pasta `dados/brutos/`. Leia-os como **texto CSV separado por
 ## Requisitos do projeto
 
 - [x] Identificar campos vazios ou valores que não parecem notas válidas.
-- [ ] Definir uma regra para calcular uma média quando faltam notas, sem inventar números.
-- [ ] Separar registros que podem ser calculados dos que precisam de revisão.
-- [ ] Exibir um resumo legível no terminal e registrar observações no diário.
+- [x] Definir uma regra para calcular uma média quando faltam notas, sem inventar números.
+- [x] Separar registros que podem ser calculados dos que precisam de revisão.
+- [x] Exibir um resumo legível no terminal e registrar observações no diário.
 
 ## Perguntas que a análise deve ajudar a responder
 
