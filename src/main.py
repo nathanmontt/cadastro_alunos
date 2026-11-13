@@ -1,8 +1,8 @@
 from pathlib import Path
 import csv
+import statistics as sc
 
 caminho_csv = Path(__file__).parent.parent / "dados" / "brutos" / "alunos.csv"
-
 
 def converter_float(valor: str) -> float:
     valor = valor.strip().casefold()
@@ -63,28 +63,60 @@ def imprimir_aluno(matricula: str, nome: str, turma: str, idade, nota1: float, n
 
 with caminho_csv.open("r", encoding="utf-8-sig", newline="") as arq:
     leitor = csv.DictReader(arq, delimiter=";")
-    quantidade_turmas = {
+    qntd_turma = {
         "A": 0,
         "B": 0,
         "C": 0,
     }
 
     imprimir_cabecalho()
+    media_nota1 = []
+    media_nota2 = []
+
+    media_idade = []
 
     for each_line in leitor:
         matricula = each_line["matricula"]
         nome = preparar_nome(each_line["nome"])
         turma = each_line["turma"].strip().upper()
         idade = converter_idade(each_line["idade"])
+        media_idade.append(idade)
 
         nota1 = converter_float(each_line["nota1"])
         nota2 = converter_float(each_line["nota2"])
+        media_nota1.append(nota1)
+        media_nota2.append(nota2)
 
         frequencia = converter_float(each_line["frequencia_pct"])
 
         # ESTATÍSTICAS
         # verificação de turma predominante
-        if turma in quantidade_turmas:
-            quantidade_turmas[turma] += 1
+        if turma in qntd_turma:
+            qntd_turma[turma] += 1
 
         imprimir_aluno(matricula, nome, turma, idade, nota1, nota2, frequencia)
+
+    idades_validas = [idade for each_age in media_idade if isinstance(each_age, (int, float))]
+
+    print()
+    print("-" * 91)
+    print("\nESTATÍSTICAS")
+
+    turma_predom = max(qntd_turma, key=qntd_turma.get)
+    holder_media_nota1 = sc.mean(media_nota1)
+    holder_media_nota2 = sc.mean(media_nota2)
+    media_idade = sc.mean(idades_validas) if idades_validas else 0
+
+    print(f"{'TURMA PREDOMINANTE'} | {'MAIOR MÉDIA'} | {'MÉDIA DE IDADES'}")
+    print(f"{holder_media_nota1:>11.1f} {'|':>8} {holder_media_nota2:>8.1f} {'|':>4} {media_idade:>8}")
+
+    # print(f"Turma predominante: {turma_predom} ({qntd_turma[turma_predom]} alunos)")
+
+    # if qntd_turma["A"] > qntd_turma["B"] and qntd_turma["A"] > qntd_turma["C"]:
+    #     print(f"A: {qntd_turma["A"]}")
+    # elif qntd_turma["B"] > qntd_turma["A"] and qntd_turma["B"] > qntd_turma["C"]:
+    #     print(f"B: {qntd_turma["B"]}")
+    # elif qntd_turma["C"] > qntd_turma["A"] and qntd_turma["C"] > qntd_turma["B"]:
+    #     print(f"C: {qntd_turma["C"]}")
+    
+    # print(qntd_turma["A"], qntd_turma["B"], qntd_turma["C"])
