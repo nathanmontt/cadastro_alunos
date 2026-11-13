@@ -9,8 +9,6 @@
 [x] Qual turma é a mais predominante?
 [ ] Qual aluno com maior média?
 [ ] Qual a média das idades dos alunos?
-[ ] Qual(is) aluno(s) possui(em) maior nota na prova 1?
-[ ] Qual(is) aluno(s) possui(em) maior nota na prova 2?
 
 <!-- - Dúvidas e suspeitas: nenhuma -->
 
